@@ -1,0 +1,10 @@
+'''all color constants for game'''
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+BLUE = (0, 0, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+CYAN = (0, 255, 255)
+YELLOW = (255, 255, 0)
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
