@@ -16,7 +16,7 @@ import pathfinding
 #pathfinding.testfunc(Astar.astar)
 failcount = 0
 passcount = 0
-for _ in range(10):
+for _ in range(1000):
     res = pathfinding.testfunc(Astar.astar)
     if res:
         passcount += 1

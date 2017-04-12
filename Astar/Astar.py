@@ -26,22 +26,23 @@ def astar(start, goal, grid):
 
         #gets the neighbors for the current node in the grid given
         #getneighbors(currentnode, grid)
-        pathfinding.getneighbors(currentnode, grid)
+        getneighbors(currentnode, grid)
 
         #loops through the adjacent nodes to check if they found the goal node
         for neighbor in currentnode.neighbors:
             if neighbor in closedlist or not neighbor.walkable:
                 continue
-            tentative_gscore = currentnode.gscore + currentnode.sgscore(neighbor)
+            tentative_g = currentnode.g + pathfinding.costtomove(currentnode, neighbor)
             #if the searched node is not in the open list yet it adds it to be checked
             if neighbor not in openlist:
                 openlist.append(neighbor)
-            elif tentative_gscore >= neighbor.gscore:
+            elif tentative_g >= neighbor.g:
                 continue
             #updates all the node's f,g,h scores in the grid
             neighbor.parent = currentnode
-            neighbor.gscore = tentative_gscore
-            neighbor.updatescores(goal)
+            neighbor.g = tentative_g
+            neighbor.h = pathfinding.manhattan(neighbor, goal)
+            neighbor.f = neighbor.g + neighbor.h
 
     return camefrom
 

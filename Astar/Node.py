@@ -7,9 +7,9 @@ class Node(object):
 
         self.xpos = positional[0]
         self.ypos = positional[1]
-        self.gscore = 0
-        self.hscore = 0
-        self.fscore = 0
+        self.g = 0
+        self.h = 0
+        self.f = 0
         self.neighbors = []
         self.parent = None
         self.walkable = True
@@ -30,27 +30,27 @@ class Node(object):
                 if node.xpos == position[0] and node.ypos == position[1]:
                     self.neighbors.append(node)
 
-    def shscore(self, goal):
+    def manhattan(self, goal):
         '''Returns the distance'''
-        self.hscore = (abs(goal.xpos - self.xpos) + abs(goal.ypos - self.ypos))* 10
-        return  self.hscore
+        self.h = (abs(goal.xpos - self.xpos) + abs(goal.ypos - self.ypos))* 10
+        return  self.h
 
 
-    def sgscore(self, neighbor):
+    def costtomove(self, start, neighbor):
         '''Gets gscore'''
-        if neighbor.xpos == self.xpos or neighbor.ypos == self.ypos:
+        if neighbor.xpos == start.xpos or neighbor.ypos == start.ypos:
             return 10
         else:
             return 14
 
     def sfscore(self):
         '''sets the f score'''
-        self.fscore = self.gscore + self.hscore
-        return self.fscore
+        self.f = self.g + self.h
+        return self.f
 
     def updatescores(self, goal):
         '''sets h, and f'''
-        self.shscore(goal)
+        self.manhattan(goal)
         self.sfscore()
 
     def printnode(self):
