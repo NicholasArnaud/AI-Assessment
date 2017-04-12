@@ -6,27 +6,24 @@ import random
 from mathlib import Vector
 
 
-class agent(object):
+class Agent(object):
     '''Agent class'''
     def __init__(self, maxvelocity, start):
         self.maxvelocity = maxvelocity #scalar
-        self.currentvelocity = Vector([0, 0]) #Vector
         self._velocity = Vector([0, -1])
         self.position = start
         self._mass = 1
         self._force = Vector([1, 1])
-        self._headed = Vector([0, 1])
-        self._forward = self._headed
+        self._forward = Vector([0, 1])
         self.center_circle = Vector([0, 1])
         self._displacement = Vector([0, 1])
-        self.acceleration = self._force * (1 / self._mass)
+        self._acceleration = self._force * (1 / self._mass)
         self.surface = pygame.Surface((20, 20))
         self._wanderangle = math.pi
         self._prevangle = math.pi
-        self.subsurface = self.surface.copy()
         self.pointlist = [(self.position.xpos, self.position.ypos),
-                     (self.position.xpos, self.position.ypos + 20),
-                     (self.position.xpos + 15, self.position.ypos + 10)]
+                          (self.position.xpos, self.position.ypos + 20),
+                          (self.position.xpos + 15, self.position.ypos + 10)]
 
 
     def seeking(self, targetvector):
@@ -61,8 +58,8 @@ class agent(object):
     def update_force(self, forced, deltatime):
         '''adds force'''
         self._force = forced * 5
-        self.acceleration = self._force
-        self._velocity += self.acceleration * deltatime
+        self._acceleration = self._force
+        self._velocity += self._acceleration * deltatime
         if Vector.mag(self._velocity) > self.maxvelocity:
             self._velocity = Vector.normal(self._velocity) * self.maxvelocity
         self._force += Vector.normal(self._velocity)
@@ -70,9 +67,7 @@ class agent(object):
 
 
     def draw(self, surface, color, goal):
-        '''draws agent when called'''
-
-
+        '''draws Agent when called'''
         angle = math.atan2(self._velocity.ypos, self._velocity.xpos) * 180 / math.pi
         if angle < 0:
             angle += 360
@@ -89,8 +84,7 @@ class agent(object):
                          (self._velocity.xpos + self.position.xpos,
                           self._velocity.ypos + self.position.ypos), 1)
         if goal is True:
-            pygame.draw.line(surface, YELLOW, (self.position.xpos + 10, self.position.ypos + 10),
-                             (self._forward.xpos, self._forward.ypos), 1)
+            pygame.draw.circle(surface, YELLOW, (self._forward.xpos, self._forward.ypos), 5)
 
         where = self.position.xpos, self.position.ypos
         blittedRect = surface.blit(self.surface, where)

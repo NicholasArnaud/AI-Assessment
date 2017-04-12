@@ -2,7 +2,7 @@
 #pylint: disable=E1101
 #from gameobject import GameObject
 import pygame as game
-from agent import agent
+from agent import Agent
 from mathlib import Vector
 from constants import *
 
@@ -20,7 +20,7 @@ class GameTemplate(object):
         self.rightclick = False
         self.goalpos = True
         for i in range(0, 1):
-            self.agentlist.append(agent(200, Vector([5, i * 5])))
+            self.agentlist.append(Agent(200, Vector([5, i * 5])))
 
     def _startup(self):
         '''do startup routines'''
@@ -37,7 +37,6 @@ class GameTemplate(object):
             self.goalpos = False
             for i in self.agentlist:
                 i.update_force(i.wandering(20, 20) * 3, self.delta_time)
-                print(i._force)
 
         elif self.leftclick is True:
             self.goalpos = True
@@ -74,7 +73,7 @@ class GameTemplate(object):
         '''base draw'''
         self.screen.fill(BLACK)
         for i in self.agentlist:
-            agent.draw(i, self.screen, RED, self.goalpos)
+            Agent.draw(i, self.screen, RED, self.goalpos)
         game.display.flip()
 
     def _shutdown(self):

@@ -9,7 +9,6 @@ class ConcreteGame(GameTemplate):
         '''need documentation'''
         super(ConcreteGame, self).__init__()
         self._name = name
-        self._gameobjects = []
 
     def update(self):
         '''update this games logic'''

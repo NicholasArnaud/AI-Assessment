@@ -31,12 +31,12 @@ class Vector(object):
             return Vector([self.xpos - other.xpos, self.ypos - other.ypos])
 
 
-    def __mul__(self, rhs):
+    def __mul__(self, other):
         '''multiply a Vector by another or by a scalar value'''
-        if isinstance(rhs, Vector):
-            return Vector([self.xpos * rhs.xpos, self.ypos + rhs.ypos])
+        if isinstance(other, Vector):
+            return Vector([self.xpos * other.xpos, self.ypos + other.ypos])
         else:
-            return Vector([self.xpos * rhs, self.ypos * rhs])
+            return Vector([self.xpos * other, self.ypos * other])
 
     def __div__(self, other):
         '''divide a Vector by a scalar value'''
@@ -68,12 +68,4 @@ class Vector(object):
         if Vector.mag(vec) == 0:
             return Vector([vec.xpos / (1), vec.ypos / (1)])
         return Vector([vec.xpos / vec.magnitude, vec.ypos / vec.magnitude])
-
-    def dotprod(self, avector):
-        '''gets the dot product'''
-        return float((self.xpos * avector.xpos) + (self.ypos * avector.ypos))
-
-    def print_info(self):
-        '''Prints Vector coordinates'''
-        print(str(self.xpos), str(self.ypos))
         
