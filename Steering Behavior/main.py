@@ -1,6 +1,5 @@
 '''EXAMPLE MAIN'''
 from concretegame import ConcreteGame
-
 def main():
     '''main execution func'''
     game = ConcreteGame("Concrete Game")

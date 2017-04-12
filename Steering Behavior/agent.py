@@ -27,7 +27,7 @@ class agent(object):
         self.pointlist = [(self.position.xpos, self.position.ypos),
                      (self.position.xpos, self.position.ypos + 20),
                      (self.position.xpos + 15, self.position.ypos + 10)]
-        
+
 
     def seeking(self, targetvector):
         ''''Runs the seeking behavior'''
