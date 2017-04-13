@@ -2,7 +2,7 @@
 
 class Node(object):
     '''Creates Nodes '''
-    def __init__(self, guid, positional):
+    def __init__(self, positional):
         '''Node Constuctor'''
 
         self.xpos = positional[0]
@@ -55,4 +55,4 @@ class Node(object):
 
     def printnode(self):
         '''prints node cooridinates'''
-        print str(str(self.xpos)+","+str(self.ypos))
+        print(self.xpos)+","+(self.ypos)

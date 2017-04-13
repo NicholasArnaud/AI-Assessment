@@ -76,8 +76,8 @@ def retrace(goal):
     return path
 
 
-def astar(start, goal, graph):
-    '''astar'''
+def Astar(start, goal, graph):
+    '''Astar'''
     graph = list(GRAPH)
     openlist = []
     closedlist = []
@@ -109,8 +109,8 @@ def astar(start, goal, graph):
     return path
 
 
-def testfunc(astarfunc):
-    '''test astar func'''
+def testfunc(Astarfunc):
+    '''test Astar func'''
     test = shuffle()
     start = test[0]
     goal = test[1]
@@ -120,7 +120,7 @@ def testfunc(astarfunc):
     for i in unwalkable:
         copygraph[i].walkable = False
 
-    result = astarfunc(start, goal, copygraph)
+    result = Astarfunc(start, goal, copygraph)
 
     expectedres = []
     for i in expected:
@@ -169,7 +169,7 @@ def shuffle():
     copygraph = list(GRAPH)
     for i in blockers:
         copygraph[i].walkable = False
-    result = astar(start, goal, copygraph)
+    result = Astar(start, goal, copygraph)
     return [start, goal, blockers, result]
 
 
@@ -187,7 +187,7 @@ def main():
     for i in unwalkable:
         copygraph[i].walkable = False
 
-    result = astar(start, goal, copygraph)
+    result = Astar(start, goal, copygraph)
 
     expectedres = []
     for i in expected:

@@ -1,5 +1,5 @@
 '''Graph creator'''
-from Node import Node
+from node import Node
 
 
 class Graph(object):

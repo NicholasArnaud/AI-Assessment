@@ -2,7 +2,7 @@
 import pathfinding
 
 # setup your search area
-def astar(start, goal, grid):
+def Astar(start, goal, grid):
     '''The legendary A* algorithm'''
     camefrom = []
     openlist = []
@@ -43,7 +43,6 @@ def astar(start, goal, grid):
             neighbor.g = tentative_g
             neighbor.h = pathfinding.manhattan(neighbor, goal)
             neighbor.f = neighbor.g + neighbor.h
-
     return camefrom
 
 
