@@ -1,6 +1,6 @@
 '''Entry Point'''
-import astar
-from graph import Graph
+import Astar
+import Graph
 import pathfinding
 
 #graph = Graph([6, 6])
@@ -17,9 +17,9 @@ import pathfinding
 failcount = 0
 passcount = 0
 for _ in range(100):
-    res = pathfinding.testfunc(astar.Astar)
+    res = pathfinding.testfunc(Astar.Astar)
     if res:
         passcount += 1
     else:
         failcount += 1
-print('fails {0}, passes {1}', failcount, passcount)
+print str.format('fails {0}, passes {1}', failcount, passcount)
